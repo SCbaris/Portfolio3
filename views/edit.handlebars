@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="container-fluid text-center titlehero" style="padding: 0px;">
+    <div class="col-md-12">
+      <h1 class="herotext">Project Edit Page</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="customform">
+  <div class="wrapper">
+    <form id="customDrink" action="/api/admin" method="GET">
+      
+      
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="project-name">Project Name</label>
+          <input type="text" class="form-control" id="project-name" placeholder="Project Name">
+        </div>
+      </div> <!--Name-->
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="project-pic">Project Picture (choose 200x200)</label>
+          <input type="text" class="form-control" id="project-pic" placeholder="Project Pic">
+        </div>
+      </div> <!--Picture-->
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="info-instructions">Project Instructions</label>
+          <input type="text" class="form-control" id="info-instructions" placeholder="Instructions">
+        </div>
+      </div> <!--Instructions-->
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="info-creators">Creators</label>
+          <input type="text" class="form-control" id="info-creators" placeholder="Creators">
+        </div>
+      </div> <!--Creators-->
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="gitHubBtn">Git Hub Link</label>
+          <input type="text" class="form-control" id="gitHubBtn" placeholder="Git Hub Link">
+        </div> 
+      </div> <!--Git Hub Button-->
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-12">
+          <label for="projectLinkBtn">Project Link</label>
+          <input type="text" class="form-control" id="projectLinkBtn" placeholder="Project Link Button">
+        </div>
+      </div><!--Project Link Button-->
+    <button type="submit" class="btn btn-warning btn-block" id="customSave">Save New Project</button> 
+    </form>
+  </div>
+</div>
+
+
+
+<script>
+$(document).on("click", "#customSave", function () {
+  event.preventDefault();
+  var userInput = {
+    name: $("#project-name").val().trim(),
+    creators: $("#info-creators").val().trim(),
+    instructions: $("#info-instructions").val().trim(),
+    pic: $("#project-pic").val().trim(),
+    gitHub: $("#gitHubBtn").val().trim(),
+    projectLink: $("#projectLinkBtn").val().trim()
+  }
+  console.log(userInput)
+
+  if (!(userInput.name)) {
+        alert("You must enter a name!");
+        return;
+      }
+  if (!(userInput.creators)) {
+        alert("You must enter a creator!");
+        return;
+      }      
+  if (!(userInput.instructions)) {
+        alert("You must enter a instruduction!");
+        return;
+      }
+  if (!(userInput.pic)) {
+        alert("You must enter a pic!");
+        return;
+      }
+  if (!(userInput.gitHub)) {
+        alert("You must enter a gitHub!");
+        return;
+      }
+                     
+  
+  $.post("/custom_projects", userInput).then(data => {
+    console.log('custom added')
+    console.log("\n Loaded data : \n")
+    console.log(data)
+    console.log(userInput)
+    console.log("")
+    console.log(userInput.creators)
+    alert("Project Added")
+
+    
+  })
+})
+</script>

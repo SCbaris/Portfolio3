@@ -1,0 +1,94 @@
+    <div id="main">
+        <div class="respop" id="results">
+            <div class="row">
+            {{#each Projects}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-id="{{this.id}}">
+                <div class="project-card card mb-4 shadow-sm" 
+                    data-id="{{this.id}}"
+                    data-pic="{{this.pic}}" 
+                    data-name="{{this.name}}" 
+                    data-creators="{{this.creators}}" 
+                    data-gitHub="{{this.gitHub}}"
+                    data-projectLink="{{this.projectLink}}" 
+                    data-instructions="{{this.instructions}}">
+                    <img src="{{this.pic}}" class="card-img" width="100%" height="auto" preserveAspectRatio="xMidYMid slice"
+                    focusable="false" aria-label="{{this.name}}">
+                    <title>{{this.name}}</title>
+                    <rect width="200px" height="200px" fill="#55595c"></rect></img>
+                    <div class="card-img-overlay">
+                    <h5 class="drinkName card-title text-left">{{this.name}}</h5>
+                    </div>
+                </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <!--Modal on project page-->
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="project-id">
+            <!--Modal Header-->
+            <div class="modal-header">
+                <img id="project-pic" class="modal-image" src="" width="100%" height="auto" preserveAspectRatio="xMidYMid slice"
+                focusable="false">
+                <br>
+                <br>
+                <h5 class="modal-title" id="project-name" color="191919"></h5>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Modal Body-->
+            <div class="modal-body">
+                <p id="info-creators"></p>
+                <p id="info-instructions"></p>
+            </div>
+            <!--Modal Footer-->
+            <div class="modal-footer">
+                <button onclick="location.href ='/';" type="button" id="gitHubBtn" class="btn btn-dark" data-dismiss="modal"
+                data-name="">GitHub</button>
+                <button  type="button" id="projectLinkBtn" class="btn btn-dark" data-dismiss="modal"
+                data-name=""></button>
+                <button onclick="location.href ='/contact';" type="button" id="contactBtn" class="btn btn-dark" data-dismiss="modal"
+                data-name="">Contact With Me!</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('.project-card').click(function (event) {
+            var chosenProject = {
+            id: $(this).data("id"),
+            pic: $(this).data("pic"),
+            name: $(this).data("name"),
+            creators: $(this).data("creators"),
+            gitHub: $(this).data("github"),
+            projectLink: $(this).data("projectlink"),
+            instructions: $(this).data("instructions")     
+        }
+        console.log(chosenProject)
+        $("#projectLinkBtn").hide();
+
+        $("#project-id").attr("data-id", chosenProject.id);
+        $("#project-name").text(chosenProject.name);
+        $("#project-pic").attr("src", chosenProject.pic);
+
+        $('#info-creators').html("Creator: " + chosenProject.creators);
+        $('#info-instructions').html("<strong>Instructions: </strong>" + chosenProject.instructions);
+
+        $("#gitHubBtn").attr("onclick" , "location.href =" + "'" + chosenProject.gitHub +"'" + ";")
+
+
+        if(chosenProject.projectLink!=null){
+            $("#projectLinkBtn").show();
+            $("#projectLinkBtn").attr("onclick" , "location.href =" + "'" + chosenProject.projectLink +"'" + ";")
+            $("#projectLinkBtn").html("Project Link")
+        }
+
+        $('#projectModal').modal('show');
+    });
+    </script>

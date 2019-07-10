@@ -1,0 +1,93 @@
+body {
+    font-family: 'Roboto Slab', serif;
+  }
+  nav{
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+  }
+
+  .title{
+    float: left;
+    margin-right: 0;
+  }
+  .navbar-dark .navbar-nav .nav-link {
+    color: white;
+  }
+  .navbar-dark .navbar-nav .nav-link:hover{
+    color: rgb(255, 197, 5)
+  }
+
+.context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
+.nav-list li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-list li a:hover:before {
+    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 23px; 
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+.social-container .col {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-list li a:before {
+    content: "\f14f";
+    color: #4d6de6;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: -28px;
+    margin-right: 7px;
+    opacity: 0;
+    visibility: hidden;
+    transition: .22s ease;
+}
+.footer, .push {
+  height: 100px; /* .push must be the same height as .footer */
+}
+
+h5{
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+  color: white;
+}
+
+.modal-title {
+  position: absolute;
+  top: 0;
+}
+.card-title {
+  color: white;
+  position: absolute;
+  bottom: 0;
+}
+.modal-image {
+  padding-top: 20px;
+  position: relative;
+}
+#project-name {
+  color: #191919;
+}

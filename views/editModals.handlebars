@@ -1,0 +1,87 @@
+    <div id="main">
+        <div class="respop" id="results">
+            <div class="row">
+            {{#each Projects}}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-id="{{this.id}}">
+                <div class="project-card card mb-4 shadow-sm" 
+                    data-id="{{this.id}}"
+                    data-pic="{{this.pic}}" 
+                    data-name="{{this.name}}" 
+                    data-creators="{{this.creators}}" 
+                    data-gitHub="{{this.gitHub}}"
+                    data-projectLink="{{this.projectLink}}" 
+                    data-instructions="{{this.instructions}}">
+                    <img src="{{this.pic}}" class="card-img" width="100%" height="auto" preserveAspectRatio="xMidYMid slice"
+                    focusable="false" aria-label="{{this.name}}">
+                    <title>{{this.name}}</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect></img>
+                    <div class="card-img-overlay">
+                    <h5 class="drinkName card-title text-left">{{this.name}}</h5>
+                    </div>
+                </div>
+                </div>
+            {{/each}}
+            </div>
+            <a class="btn btn-primary" href="/api/admin/edit" role="button">Create New One</a>
+        </div>
+    </div>
+
+    <!--Modal on project page-->
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="project-id">
+            <!--Modal Header-->
+            <div class="modal-header">
+                <img id="project-pic" class="modal-image" src="" width="80%" height="350" preserveAspectRatio="xMidYMid slice"
+                focusable="false">
+                <br>
+                <h5 class="modal-title" id="project-name"></h5>
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Modal Body-->
+            <div class="modal-body">
+                <p id="info-creators"></p>
+                <p id="info-instructions"></p>
+            </div>
+            <!--Modal Footer-->
+            <div class="modal-footer">
+                <button onclick="location.href ='/api/admin/cancan123/edit';" type="button" id="gitHubBtn" class="btn btn-dark" data-dismiss="modal"
+                data-name="">Edit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $('.project-card').click(function (event) {
+            var chosenProject = {
+            id: $(this).data("id"),
+            pic: $(this).data("pic"),
+            name: $(this).data("name"),
+            creators: $(this).data("creators"),
+            gitHub: $(this).data("gitHub"),
+            projectLink: $(this).data("projectLink"),
+            instructions: $(this).data("instructions")     
+        }
+        $("#projectLinkBtn").hide();
+
+        $("#project-id").attr("data-id", chosenProject.id);
+        $("#project-name").html(chosenProject.name);
+        $("#project-pic").attr("src", chosenProject.pic);
+
+        $('#info-creators').html("Creator: " + chosenProject.creators);
+        $('#info-instructions').html("Instructions: " + chosenProject.instructions);
+
+        $("#gitHubBtn").attr("onclick" , "location.href =" + chosenProject.gitHub +";"")
+
+        if(chosenProject.projectLink!=null){
+            $("#projectLinkBtn").show();
+            $("#projectLinkBtn").attr("onclick" , "location.href ="+ chosenProject.projectLink + ";")
+            $("#projectLinkBtn").html("Project Link")
+        }
+
+        $('#projectModal').modal('show');
+    </script>
