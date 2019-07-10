@@ -1,9 +1,11 @@
+module.exports =
+
 {
   "development": {
-    "username": "root",
-    "password": "Candac123!.",
-    "database": "project",
-    "host": "localhost",
+    "username": process.env.JAWSDB_USER,
+    "password": process.env.JAWSDB_PASS,
+    "database": process.env.JAWSDB_DBNAME,
+    "host": process.env.JAWSDB_HOST,
     "dialect": "mysql",
     "operatorsAliases": false
   },
@@ -16,11 +18,7 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  }
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+    }
 }
