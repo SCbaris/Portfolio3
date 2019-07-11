@@ -16,4 +16,17 @@ module.exports = function(app) {
         .then(user => console.log('success'))
         .catch(err => console.log(err))
     });
+
+    app.delete("/api/delete/:id", function(req, res) {
+      db.Projects.destroy({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(dbPost) {
+        res.json(dbPost);
+      });
+    });
+
+
+
 }

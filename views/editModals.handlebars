@@ -17,6 +17,8 @@
                     <rect width="100%" height="100%" fill="#55595c"></rect></img>
                     <div class="card-img-overlay">
                     <h5 class="drinkName card-title text-left">{{this.name}}</h5>
+                    <button onclick="location.href ='/api/admin';" type="button" id="deleteBtn" class="btn btn-dark" data-dismiss="modal"
+                        data-name="" data-id="{{this.id}}">Delete</button>
                     </div>
                 </div>
                 </div>
@@ -46,8 +48,10 @@
             </div>
             <!--Modal Footer-->
             <div class="modal-footer">
-                <button onclick="location.href ='/api/admin/cancan123/edit';" type="button" id="gitHubBtn" class="btn btn-dark" data-dismiss="modal"
+                <button onclick="location.href ='/api/admin/edit';" type="button" id="EditButton" class="btn btn-dark" data-dismiss="modal"
                 data-name="">Edit</button>
+                <button onclick="location.href ='/api/admin/{{this.id}}';" type="button" id="deleteBtn" class="btn btn-dark" data-dismiss="modal"
+                data-name="">Delete</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
@@ -65,8 +69,7 @@
             gitHub: $(this).data("gitHub"),
             projectLink: $(this).data("projectLink"),
             instructions: $(this).data("instructions")     
-        }
-        $("#projectLinkBtn").hide();
+            }
 
         $("#project-id").attr("data-id", chosenProject.id);
         $("#project-name").html(chosenProject.name);
@@ -75,13 +78,19 @@
         $('#info-creators').html("Creator: " + chosenProject.creators);
         $('#info-instructions').html("Instructions: " + chosenProject.instructions);
 
-        $("#gitHubBtn").attr("onclick" , "location.href =" + chosenProject.gitHub +";"")
-
-        if(chosenProject.projectLink!=null){
-            $("#projectLinkBtn").show();
-            $("#projectLinkBtn").attr("onclick" , "location.href ="+ chosenProject.projectLink + ";")
-            $("#projectLinkBtn").html("Project Link")
-        }
+        $("#deleteBtn").attr("onclick" , "location.href =" + "'" + chosenProject.gitHub +"'" + ";")
 
         $('#projectModal').modal('show');
+        })
+
+        $(document).on("click", "#deleteBtn", function() {
+        let id = $(this).attr('data-id')
+            $.ajax("/api/delete/" + id, {
+                type: "DELETE"
+            })
+            .then(function(data) {
+                console.log(`drink ${id} successfully deleted`)
+                location.reload()
+            })
+        })
     </script>

@@ -7,7 +7,6 @@ module.exports =
     "database": process.env.JAWSDB_DBNAME,
     "host": process.env.JAWSDB_HOST,
     "dialect": "mysql",
-    "operatorsAliases": false
   },
   "test": {
     "username": "root",
