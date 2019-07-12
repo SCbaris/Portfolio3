@@ -5,6 +5,7 @@ body {
     color: white;
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .title{
@@ -66,7 +67,7 @@ ul, ol {
     transition: .22s ease;
 }
 .footer, .push {
-  height: 100px; /* .push must be the same height as .footer */
+  height: 80px; /* .push must be the same height as .footer */
 }
 
 h5{
