@@ -4,18 +4,36 @@
       <hr>
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" id="name" class="form-control" name="name" placeholder="John Smith" required="required">
+        <input type="text" id="name" class="form-control" name="name" placeholder="John Smith" required="required" val="">
       </div>
       <div class="form-group">
         <label for="name">E-Mail</label>
-        <input type="email" id="email" class="form-control" name="email" placeholder="example@gmail.com" required="required">
+        <input type="email" id="email" class="form-control" name="email" placeholder="example@gmail.com" required="required" val="">
       </div>
       <div class="form-group">
         <label for="name">Message</label>
-        <textarea id="message" name="message" class="form-control" rows="5" required="required"></textarea>
+        <textarea id="message" name="message" class="form-control" rows="5" required="required" val=""></textarea>
       </div>
       <div class="form-group">
         <button class="btn btn-dark bg-dark btn-block submitBtn" > Submit</button>
       </div>
       <div class="push"></div>
   </div>
+
+
+      <script>
+        $(document).on("click", ".submitBtn", function() {
+          var userInput = {
+            message : $("#message").val().trim(),
+            senderEmail : $("#email").val().trim(),
+            senderName :  $("#name").val().trim(),
+          }
+
+          $.post("/sendMail", userInput).then(data => {
+            console.log(data)        
+          }).then(function(data) {
+              console.log(`mail sended`)
+              location.reload()
+          })
+        })
+    </script>
